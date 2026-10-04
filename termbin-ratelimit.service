@@ -1,0 +1,19 @@
+# SPDX-License-Identifier: GPL-3.0-or-later
+# termbin-ratelimit systemd unit -> /etc/systemd/system/termbin-ratelimit.service
+# Copyright (C) 2026 Leproide
+# Author: https://github.com/Leproide
+
+[Unit]
+Description=Termbin (fiche) paste rate limiter
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+EnvironmentFile=/etc/termbin-ratelimit.env
+ExecStart=/usr/bin/python3 -u /opt/termbin-ratelimit/termbin-ratelimit.py
+Restart=always
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target
