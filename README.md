@@ -236,15 +236,32 @@ Payload sent to `POST https://api.ipthreat.net/api/report` (header `X-API-KEY`):
 
 `count` is the number of pastes, capped at 10 (the API maximum). An IP already in the set is neither banned nor reported again.
 
-| Flag | Value | | Flag | Value |
-|---|---|---|---|---|
-| Dns | 1 | | Hacking | 128 |
-| Fraud | 2 | | BadBot | 256 |
-| DDos | 4 | | Compromised | 512 |
-| BruteForce | 8 | | Phishing | 1024 |
-| Proxy | 16 | | Iot | 2048 |
-| Spam | 32 | | PortScan | 4096 |
-| Vpn | 64 | | AI | 8192 |
+`flags` is a **bitmask**: each flag is a power of two, and the sent value is the sum of the selected flags. With the default `TB_IPTHREAT_FLAGS=DDos,Spam`:
+
+```
+DDos (4) + Spam (32) = 36
+```
+
+`TB_IPTHREAT_FLAGS` accepts either flag names (`DDos,Spam`, converted automatically) or the integer (`36`).
+
+| Flag | Value |
+|---|---|
+| Dns | 1 |
+| Fraud | 2 |
+| DDos | 4 |
+| BruteForce | 8 |
+| Proxy | 16 |
+| Spam | 32 |
+| Vpn | 64 |
+| Hacking | 128 |
+| BadBot | 256 |
+| Compromised | 512 |
+| Phishing | 1024 |
+| Iot | 2048 |
+| PortScan | 4096 |
+| AI | 8192 |
+
+Examples: `DDos,Spam,BadBot` = 4 + 32 + 256 = `292`; `BruteForce,PortScan` = 8 + 4096 = `4104`.
 
 ## Coexistence with IPBan / firewalld / Docker
 
