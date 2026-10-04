@@ -5,9 +5,12 @@ Copyright (C) 2026 Leproide
 Author: https://github.com/Leproide
 -->
 
-# termbin-ratelimit
+# Termbin/Fiche Ratelimit
 
-A paste rate limiter for [fiche](https://github.com/solusipse/fiche) / termbin (tcp/9999).
+A paste rate limiter for Fiche/Termbin (tcp/9999).
+[Fiche Original](https://github.com/solusipse/fiche)
+[Fiche Custom](https://github.com/Leproide/fiche)
+[Termbin Reborn](https://github.com/Leproide/termbin-reborn)
 
 It follows fiche's log and enforces per-IP sliding-window limits. Offenders are banned with nftables. Optionally, the pastes they sent during the flood are deleted. Each ban is reported to [IPThreat](https://ipthreat.net) with flags that match the abuse (DDos + Spam, not BruteForce).
 
